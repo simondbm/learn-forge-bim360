@@ -14,7 +14,14 @@ function launchViewer(urn, viewableId) {
   Autodesk.Viewing.Initializer(options, () => {
     viewer = new Autodesk.Viewing.GuiViewer3D(
       document.getElementById('forgeViewer'),
-      { extensions: ['Autodesk.DocumentBrowser'] }
+      {
+        extensions: [
+          'Autodesk.DocumentBrowser',
+          'Autodesk.VisualClusters',
+          'MyAwesomeExtension',
+          'HandleSelectionExtension',
+        ],
+      }
     )
     viewer.start()
     var documentId = 'urn:' + urn
@@ -52,3 +59,8 @@ function getForgeToken(callback) {
     })
   })
 }
+
+viewer = new Autodesk.Viewing.GuiViewer3D(
+  document.getElementById('forgeViewer'),
+  { extensions: ['MyExtension', 'HandleSelectionExtension'] }
+)
